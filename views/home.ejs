@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>HOME PAGE</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+
+    <% if (user) { %>
+        <h1 align="center">Welcome, <%= user.fullName %>!</h1> <!-- Display the full name here -->
+        <div class="container mt-3 row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <% blogs.forEach(blog => { %>
+                <div class="col">
+                    <div class="card h-100" style="width: 18rem;">
+                        <img src="<%= blog.coverImage %>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= blog.tittle %></h5>
+                            <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+                            <!-- Fixed Delete Button Link -->
+                            <a href="#" class="btn btn-primary" onclick="deleteBlog('<%= blog._id %>')">Delete</a>
+
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    <% } else { %>
+        <h1 align="center">Login Fast !!</h1>
+    <% } %>
+
+    <%- include('./partials/script') %>
+    <script>
+        async function deleteBlog(blogId) {
+            const response = await fetch(`/blog/delete/${blogId}`, {
+                method: 'DELETE',
+            });
+    
+            if (response.ok) {
+                // Reload the page or remove the blog card dynamically
+                location.reload();
+            } else {
+                alert('Failed to delete the blog.');
+            }
+        }
+    </script>
+</body>
+</html>

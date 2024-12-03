@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>BLOG PAGE</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <div class="container mt-4">
+        <h2 align = "center" ><%= blog.tittle %> </h2>
+        <img src="/<%= blog.coverImage %>" align = "center" width="700vh"/>
+        <pre><%= blog.body %> </pre>
+    </div>
+    <%- include('./partials/script') %>
+</body>
+</html>
