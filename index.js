@@ -45,5 +45,5 @@ app.use('/blog', blogRoute);
 
 app.listen(PORT, () => {
     connectDb();
-    console.log(`Server started at PORT: ${PORT}`);
+    console.log(`Server started at PORT NO: ${PORT}`);
 });
